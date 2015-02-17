@@ -7,7 +7,7 @@ def getBarChartData():
 
 
     artists_rows = csv.reader(f_artists) 
-    albums_rows = csv.reader(f_albums) #these read the files in a row
+    albums_rows = csv.reader(f_albums) #these read the files in a rows
 
     artists_header = artists_rows.next() 
     albums_header = albums_rows.next() #this gets the headers
