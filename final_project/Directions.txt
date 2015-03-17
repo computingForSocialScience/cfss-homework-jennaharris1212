@@ -43,3 +43,4 @@ Note that this means that if you manage to run your project on a real live web s
 
 Turning it in
 You will demonstrate your project on March 18 between 6–8pm, and also include all code within the final_project folder (two or more scripts) in your GitHub repository. Please also include a file called README.txt or README.md that describes how to run your project, including any setup scripts that download data, etc. Finally, if you make any large data files in the course of running your website, please use a .gitignore file to exclude these from the repository.
+
