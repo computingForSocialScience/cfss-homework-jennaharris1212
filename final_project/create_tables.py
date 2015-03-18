@@ -50,7 +50,7 @@ fill_attributes_table= """INSERT INTO friend_attributes (uid, name, birthday_dat
 cur.execute(fill_attributes_table, new_list) # fill the table with appended list
 
 def getFriendEdges(attributes):
-	edge_data = []
+	edge_list = []
 	with open('friend_edges') as e:
 		for line in e:
 			data.append(json.loads(line))
@@ -64,11 +64,10 @@ def getFriendEdges(attributes):
 
 		name = a['uid2']
 		edge_list.append(uid2)
-
+	fill_edge_table= """INSERT INTO friend_edges (uid1, uid2) VALUES (%s, %s);"""
+	cur.execute(fill_edge_table, edge_list) # fill the table with appended list
+	
 	return edge_list
-
-fill_edge_table= """INSERT INTO friend_edges (uid1, uid2) VALUES (%s, %s);"""
-cur.execute(fill_edge_table, edge_list) # fill the table with appended list
 
 
 
