@@ -18,13 +18,16 @@ cur = db.cursor()
 
 # turning the json files into lists
 # so that we can iterate through them
+# we made the number of attributes smaller because our  
+# json data is not transferring and this is a simplified code we
+# would have written, if we were able to test it.
 def getFriendAttributes(attributes):
 	attribute_data = []
 	with open('friend_attributes') as f:
     	for line in f:
-        	data.append(json.loads(line))
+        	data.append(json.loads(line))#loads data from json
 	return attribute_data #return this LIST of IDs
-	# print attribute_data
+	# takes attribute_data from json and iterates it
 	for a in attribute_data:
 		new_list = []
 
