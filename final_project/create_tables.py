@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
-from io import open
 import pymysql
+from io import open
 import pandas as pd
 import networkx as nx
 import json
