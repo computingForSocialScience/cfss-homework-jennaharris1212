@@ -42,12 +42,15 @@ def getFriendAttributes(attributes):
 
 		sex = a['sex']
 		new_list.append(sex)
+	
+	#take the newly created list and insert it into the attributes table
+	fill_attributes_table= """INSERT INTO friend_attributes (uid, name, birthday_date, sex) VALUES (%s, %s, %s, %s);"""
+	cur.execute(fill_attributes_table, new_list) # fill the table with appended list
+	
 	#list is created with all of the retrieved data
 	return new_list
 
-#take the newly created list and insert it into the attributes table
-fill_attributes_table= """INSERT INTO friend_attributes (uid, name, birthday_date, sex) VALUES (%s, %s, %s, %s);"""
-cur.execute(fill_attributes_table, new_list) # fill the table with appended list
+
 
 def getFriendEdges(attributes):
 	edge_list = []
