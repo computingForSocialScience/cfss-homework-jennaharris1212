@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
-import pymysql
 from io import open
+import pymysql
 import pandas as pd
 import networkx as nx
 import json
@@ -16,27 +16,22 @@ passwd=" "
 db=pymysql.connect(db=dbname, host=host, user=user,passwd=passwd, charset='utf8')
 c = db.cursor()
 
-def get_edge_data(edges):
+
+def upload_get_edge_data(edges):
 	uid = []
 	# opens json file, loads it, and closes the file
-	json_data = open(edges)
-	friend_edges = json.load(json_data)
-	json_data.close()
+	friend_edges = json.load(edges)
 
 	# creates a list of tuples of names
 	for i in friend_edges:
 		uid.append((i['uid1'],i['uid2']))
 	return uid
 
-# takes file friend_attributes.json and returns a list of lists of info
-def get_friend_info(attributes):
+def upload_get_friend_info(attributes):
 	friend_info = []
 
 	# opens json file, loads it, and closes the file
-	friend_attributes = open(attributes)
-	friend_info_data = json.load(friend_attributes)
-	friend_attributes.close()
-
+	friend_info_data = json.load(attributes)
 	info_list = []
 
 	# loops through loaded json data and creates a list of lists of information
@@ -126,56 +121,28 @@ def get_friend_info(attributes):
 		info_list.append(temp_info)
 	return info_list
 
-# takes a json file and creates a SQL table and inserts data
-def create_edge_table(edges):
-	#catches warnings and only inserts items if table isn't made
-	with warnings.catch_warnings():
-		warnings.filterwarnings('error')
-		try:
-			# creates SQL table
-			sql_friend_edges = '''CREATE TABLE IF NOT EXISTS 
-				friend_edges(uid1 varchar (100), uid2 varchar (100));'''
-			c.execute(sql_friend_edges)
-		except Warning:
-			pass
-		else:
-			# Gets data in the form of a list of tuples
-			uid = get_edge_data(edges)
+def upload_create_edge_table(edges):
+	sql_delete = ''' DELETE FROM friend_edges;'''
+	c.execute(sql_delete)
+	# Gets data in the form of a list of tuples
+	uid = upload_get_edge_data(edges)
 
-			# Inserts data into SQL table
-			insertQuery = '''INSERT INTO friend_edges(uid1, uid2) VALUES (%s, %s);'''
-			c.executemany(insertQuery,uid)
+	# Inserts data into SQL table
+	insertQuery = '''INSERT INTO friend_edges(uid1, uid2) VALUES (%s, %s);'''
+	c.executemany(insertQuery,uid)
+	db.commit()
 
-# takes a json file and cretes a SQL table and inserts data
-def create_attributes_table(attributes):
-	# catches warnings and only inserts items if table isn't made
-	with warnings.catch_warnings():
-		warnings.filterwarnings('error')
-		try:
-			# creates SQL table
-			sql_friend_attributes = '''CREATE TABLE IF NOT EXISTS friend_info
-				(uid varchar (100), name varchar (100), pic varchar (100), religion varchar (100),
-				birthday_date varchar (100), sex varchar(100), hometown_location varchar (100),
-				current_location varchar(100), relationship_status varchar(100),
-				significant_other_id varchar (100), political varchar (100),
-				locale varchar(100), profile_url varchar(100), website varchar(256), contact_email varchar(100))'''		
-					
-			c.execute(sql_friend_attributes)
-		except Warning:
-			pass
-		else:
-			# gets info from json file
-			friend_attributes = get_friend_info(attributes)
+def upload_create_attributes_table(attributes):
+	sql_delete = ''' DELETE FROM friend_info;'''
+	c.execute(sql_delete)
+	
+	# gets info from json file
+	friend_attributes = get_friend_info(attributes)
 
-			# inserts data into SQL table
-			insertQuery = '''INSERT INTO friend_info(uid, name, pic, religion,
+	# inserts data into SQL table
+	insertQuery = '''INSERT INTO friend_info(uid, name, pic, religion,
 				birthday_date, sex, hometown_location, current_location, relationship_status,
 				significant_other_id, political, locale, profile_url, webstie, contact_email)
 				VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);'''
-			c.executemany(insertQuery, friend_attributes)
-
-# creates and fills tables as long as these files exist
-create_attributes_table("friend_attributes.json")
-create_edge_table("friend_edges.json")
-
-db.commit()
+	c.executemany(insertQuery, friend_attributes)
+	db.commit()
