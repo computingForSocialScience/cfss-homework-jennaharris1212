@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+
+	<title>Friend Profile</title>
+</head>
+<body>
+	<table>
+		<tr>
+			<td>uid</td>
+			<td>name</td>
+			<td>birthday_date</td>
+			<td>pic</td>
+		</tr>
+
+		{% for uid, name, birthday_date, pic%}
+
+		<tr>
+
+			<td>{{uid}}</td>
+			<td>{{name}}</td>
+			<td>{{birthday_date}}</td>
+			<td>{{pic}}</td>
+		</tr>
+
+		{% endfor %}
+	</table>
+
+</body>
+</html>
