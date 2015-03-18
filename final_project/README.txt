@@ -13,10 +13,11 @@ mutual friends that Susanna had with that friend.
 So in our script that when we were first writing part 1 and creating our create_tables2.py, whenever I ran it in my terminal,
 MySQL would not be functional. I recieved help from Piazza, fellow students, and CompSci Harper Tutors, but no matter what 
 happened. In the end we simplified the code to 4 attributes instead of the 14 we inteded above in order to attempt to complete 
-the rest of the project without being able to test our data. 
+the rest of the project without being able to test our data.  For this reason, we were unable to complete the project in its
+entirety.  
 
-Without data, it has been difficult to continue. Most of our code is the bare bones of making a working application. 
-It is hard to determine which variable plugs in to the code that creates the profiles and network graphs for analysis, 
+Without data, it was incredibly to continue. Most of our code is hypothetical of our Facebook Networks working application. 
+It is hard to determine which variable plugs in to our code which creates the profiles and network graphs for analysis, 
 when there is no way to check how our data was imported. For that reason, there are many gaps and placeholder variables in 
 this code.  Additionally, it is difficult to predetermine what these variables would be called/how they would be manipulated 
 into dataframes to be analysed using pandas and bokeh. The two html codes im my templates folder reflect this as well.
