@@ -5,23 +5,30 @@
 	<title>Friend Profile</title>
 </head>
 <body>
-	<table>
-		<tr>
-			<td>uid</td>
-			<td>name</td>
-			<td>birthday_date</td>
-			<td>sex</td>
-		</tr>
-
+	<h1>Profile</h1>
+        <a href="/">Home</a>
+        <h4 align="center">Mutual Friends Graph</h4>
+        <div class='matplotlib',align="right"></div>
+	<table border="3" style="width: 100%;">
 		{% for uid, name, birthday_date, sex%}
 
+	<table>
 		<tr>
-
-			<td>{{uid}}</td>
-			<td>{{name}}</td>
-			<td>{{birthday_date}}</td>
-			<td>{{sex}}</td>
+        		<td>User ID</td>
+        		<td>{{uid}}</td>
+        	</tr>
+		<tr>
+			<td>Name</td>
+        		<td>{{name}}</td>
 		</tr>
+ 		<tr>
+        		<td>Birthday</td>
+        		<td>{{birthday_date}}</td>
+        	</tr>
+        	<tr>
+        		<td>Sex</td>
+        		<td>{{sex}}</td>
+        	</tr>
 
 		{% endfor %}
 	</table>
