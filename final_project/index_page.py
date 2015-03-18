@@ -41,8 +41,17 @@ def make_profiles_resp():
 		d[uid] = name
 	#this displays the attributes on a friend's profile page
 	return render_template('friends.html',uid=uid)
-	
+
+		# this has panda reading the data from friend_edges
+		edgeList = pd.read_sql("SELECT * FROM friend_edges", db)
+		# this next function takes a name
+		# then returns a list of thier friends
+		def friends_list(name):
+			
+
+
 
 if __name__ == '__main__': 
 	app.run() 
+
 
