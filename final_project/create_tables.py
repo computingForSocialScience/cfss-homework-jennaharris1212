@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 dbname="friends"
 host="127.0.0.1"
 user="root"
-passwd=" "
+passwd=""
 db=pymysql.connect(db=dbname, host=host, user=user,passwd=passwd, charset='utf8')
 
 cur = db.cursor()
