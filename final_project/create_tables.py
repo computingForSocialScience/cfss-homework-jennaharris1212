@@ -28,8 +28,8 @@ def getFriendAttributes(attributes):
 			data.append(json.loads(line))#loads data from json
 	return attribute_data #return this LIST of IDs
 	# takes attribute_data from json and iterates it
+	new_list = []
 	for a in attribute_data:
-		new_list = []
 
 		uid = a['uid']
 		new_list.append(uid)
@@ -50,10 +50,8 @@ def getFriendAttributes(attributes):
 	#list is created with all of the retrieved data
 	return new_list
 
-
-
+edge_list = []
 def getFriendEdges(attributes):
-	edge_list = []
 	with open('friend_edges') as e:
 		for line in e:
 			data.append(json.loads(line))
