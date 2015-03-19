@@ -21,7 +21,7 @@ cur = db.cursor()
 # we made the number of attributes smaller because our  
 # json data is not transferring and this is a simplified code we
 # would have written, if we were able to test it.
-def getFriendAttributes(attributes):
+def getFriendAttributes():
 	attribute_data = []
 	with open('friend_attributes') as f:
 		for line in f:
@@ -51,7 +51,7 @@ def getFriendAttributes(attributes):
 	return new_list
 
 edge_list = []
-def getFriendEdges(attributes):
+def getFriendEdges():
 	with open('friend_edges') as e:
 		for line in e:
 			data.append(json.loads(line))
